@@ -1,0 +1,24 @@
+TARGET = template
+OBJS = main.o
+
+INCDIR = 
+CFLAGS = -O3 -frename-registers -ffast-math -fomit-frame-pointer -g -G0 -Wall
+CXXFLAGS = $(CFLAGS) -fno-exceptions -fno-rtti
+ASFLAGS = $(CFLAGS)
+
+#To build for custom firmware:
+PSP_FW_VERSION = 371
+
+LIBDIR =
+LDFLAGS =
+STDLIBS= -losl -lpng -lz \
+		-lpspsdk -lpspctrl -lpspumd -lpsprtc -lpsppower -lpspgu -lpspaudiolib -lpspaudio -lm
+LIBS=$(STDLIBS)$(YOURLIBS)
+
+
+EXTRA_TARGETS = EBOOT.PBP
+PSP_EBOOT_TITLE = Pathfinding TEST
+
+
+PSPSDK=$(shell psp-config --pspsdk-path)
+include $(PSPSDK)/lib/build.mak
